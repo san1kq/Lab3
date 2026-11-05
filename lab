@@ -1,0 +1,103 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+#define D 2.54
+#define D_ES 2.32166
+#define D_LT 2.7076
+#define BITS_IN_BYTE 8
+
+void zadanie1(void)
+{
+    int num, num2;
+
+    puts("=== Задание 1 ===");
+
+    puts("Введите число");
+    scanf("%d", &num);
+    printf("Введено число %d\n", num);
+
+    puts("Введите второе число");
+    scanf("%d", &num2);
+    printf("Введено число %d\n", num2);
+
+    printf("Сумма: %d + %d = %d\n", num, num2, num + num2);
+    printf("Разность: %d - %d = %d\n", num, num2, num - num2);
+    printf("Произведение: %d * %d = %d\n", num, num2, num * num2);
+
+    if (num != 0)
+    {
+        printf("Частное (целое): %d / %d = %d\n", num2, num, num2 / num);
+        printf("Частное (дробное): %d / %d = %.2f\n", num2, num, (double)num2 / num);
+        printf("Остаток: %d %% %d = %d\n", num2, num, num2 % num);
+    }
+    else
+    {
+        puts("Делить на 0 нельзя");
+    }
+    puts("");
+}
+
+void zadanie2(void)
+{
+    int dym;
+    int choice;
+    float result;
+    double k;
+
+    puts("=== Задание 2 ===");
+    puts("Выберите дюйм: 1 - английский, 2 - испанский (pulgada), 3 - старолитовский");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        k = D;
+    }
+    else if (choice == 2)
+    {
+        k = D_ES;
+    }
+    else if (choice == 3)
+    {
+        k = D_LT;
+    }
+    else
+    {
+        puts("Такого пункта нет");
+        puts("");
+        return;
+    }
+
+    puts("Введите количество дюймов");
+    scanf("%d", &dym);
+
+    result = (float)(k * dym);
+    printf("%d дюймов - это %.2f см\n", dym, result);
+    puts("");
+}
+void homework(void)
+{
+    double gbit, gbyte;
+
+    puts("=== Домашнее задание (вариант 9) ===");
+    puts("Введите скорость передачи данных в Гбит/с");
+    scanf("%lf", &gbit);
+
+    gbyte = gbit / BITS_IN_BYTE;
+
+    printf("%.2f Гбит/с / %d = %.2f Гбайт/с\n", gbit, BITS_IN_BYTE, gbyte);
+    puts("");
+}
+
+int main(void)
+{
+    setlocale(LC_CTYPE, "rus");
+
+    zadanie1();
+    zadanie2();
+    homework();
+
+    system("pause");
+    return 0;
+}
